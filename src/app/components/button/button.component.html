@@ -1,1 +1,9 @@
-<p>button works!</p>
+<button
+  class="ui inverted button"
+  [ngStyle]="{ background: color }"
+  type="submit"
+  (click)="onClick()"
+  [disabled]="isDisabled"
+>
+  {{ text }}
+</button>
