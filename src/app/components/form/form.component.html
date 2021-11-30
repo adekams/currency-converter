@@ -1,1 +1,63 @@
-<p>form works!</p>
+<div class="ui hidden divider"></div>
+<h1 class="ui header center aligned">CURRENCY CONVERTER</h1>
+<form
+  class="ui form"
+  (ngSubmit)="onSubmit(currencyForm)"
+  #currencyForm="ngForm"
+>
+  <!-- {{ currencyForm.value | json }} -->
+  <div class="field">
+    <label for="">Amount</label>
+    <input
+      class="ui input"
+      type="number"
+      name="amount"
+      [ngModel]="model.amount"
+      required
+    />
+  </div>
+  <div class="ui grid stackable">
+    <div class="eight wide column">
+      <div class="field">
+        <label for="convertFromCurrency">Convert From</label>
+        <select
+          id="prevCurrency"
+          required
+          name="prevCurrency"
+          [(ngModel)]="model.prevCurrency"
+        >
+          <option *ngFor="let currency of convertCurrency" [value]="currency">
+            {{ currency }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="eight wide column">
+      <div class="field">
+        <label for="convertToCurrency">Convert To</label>
+        <select
+          id="newCurrency"
+          required
+          name="newCurrency"
+          [(ngModel)]="model.newCurrency"
+        >
+          <option *ngFor="let currency of convertCurrency" [value]="currency">
+            {{ currency }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <br />
+  <!-- <div class="ui segment very raised"> -->
+  <div class="field">
+    <span>{{ model.amount }} {{ model.prevCurrency }}</span>
+    <!-- </div> -->
+  </div>
+  <br />
+  <app-button
+    color="green"
+    text="Convert"
+    [isDisabled]="!currencyForm.valid"
+  ></app-button>
+</form>
